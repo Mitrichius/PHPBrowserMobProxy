@@ -56,6 +56,21 @@ class PHPBrowserMobProxy_Client
     }
 
     /**
+     * Connect to existing proxy
+     *
+     * @param string $port existing proxy port
+     *
+     * @return void
+     */
+    public function connect($port)
+    {
+        $this->port = $port;
+        $parts = parse_url($this->browsermob_url);
+        $this->hostname = $parts["host"];
+        $this->url = $this->hostname . ":" . $port;
+    }
+
+    /**
      * Close connection to the proxy
      *
      * @return void
