@@ -56,6 +56,22 @@ class PHPBrowserMobProxy_Client
     }
 
     /**
+     * Get list of existing proxies ports
+     *
+     * @return array
+     */
+    public function getProxiesPorts()
+    {
+        $ports = [];
+        $response = Requests::get("http://" . $this->browsermob_url . "/proxy");
+        $proxyList = json_decode($response->body, true);
+        foreach ($proxyList['proxyList'] as $proxy) {
+            $ports[] = $proxy['port'];
+        }
+        return $ports;
+    }
+
+    /**
      * Connect to existing proxy
      *
      * @param string $port existing proxy port
@@ -77,7 +93,7 @@ class PHPBrowserMobProxy_Client
      */
     public function close()
     {
-        $response = Requests::delete("http://{$this->browsermob_url}/{$this->port}");
+        Requests::delete("http://{$this->browsermob_url}/{$this->port}");
     }
 
     /**
