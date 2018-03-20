@@ -65,6 +65,9 @@ class PHPBrowserMobProxy_Client
         $ports = [];
         $response = Requests::get("http://" . $this->browsermob_url . "/proxy");
         $proxyList = json_decode($response->body, true);
+        if (!isset($proxyList['proxyList']) || !$proxyList['proxyList']) {
+            return [];
+        }
         foreach ($proxyList['proxyList'] as $proxy) {
             $ports[] = $proxy['port'];
         }
