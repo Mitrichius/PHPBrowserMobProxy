@@ -35,6 +35,38 @@ class PHPBrowserMobProxy_Client
     {
         $this->browsermob_url = $url;
     }
+    
+    /**
+     * @return string
+     */
+    public function getHostname()
+    {
+        return $this->hostname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPort()
+    {
+        return $this->port;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBrowsermobUrl()
+    {
+        return $this->browsermob_url;
+    }
 
     /**
      * Open connection to the proxy
