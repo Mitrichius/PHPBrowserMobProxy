@@ -456,6 +456,21 @@ class PHPBrowserMobProxy_Client
         );
         return $response;
     }
+    
+    /**
+     * Method for removing all URL rewriting rules currently in effect
+     *
+     * @return string
+     */
+    public function removeRewriteRules()
+    {
+        $url = "http://{$this->browsermob_url}/proxy/{$this->port}/rewrite";
+        $response = Requests::delete(
+            $url,
+            array()
+        );
+        return $response;
+    }
 
     /**
      * Method to set how many times a request should be retried
