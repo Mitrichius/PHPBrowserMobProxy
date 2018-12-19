@@ -96,7 +96,7 @@ class PHPBrowserMobProxy_Client
      */
     public function close()
     {
-        Requests::delete("http://{$this->browsermob_url}/{$this->port}");
+        Requests::delete("http://{$this->browsermob_url}/proxy/{$this->port}");
     }
 
     /**
