@@ -71,14 +71,22 @@ class PHPBrowserMobProxy_Client
     /**
      * Open connection to the proxy
      *
+     * @param int $port specific proxy port
+     * 
      * @return void
      */
-    public function open()
+    public function open($port = null)
     {
+        $data = [
+            'port' => $port
+        ];
         $parts = parse_url($this->browsermob_url);
         $this->hostname = $parts["host"];
 
-        $response = Requests::post("http://" . $this->browsermob_url . "/proxy/");
+        $response = Requests::post(
+            "http://" . $this->browsermob_url . "/proxy/",
+            array(),
+            $data);
 
         $decoded = json_decode($response->body, true);
         if ($decoded) {
